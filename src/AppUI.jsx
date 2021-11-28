@@ -4,6 +4,7 @@ import TodoSearch from './components/TodoSearch'
 import TodoList from './components/TodoList'
 import TodoItem from './components/TodoItem'
 import CreateTodoButton from './components/CreateTodoButton'
+import './assets/styles/AppUI.css'
 
 const AppUI = ({
   totalTodos,
@@ -15,7 +16,7 @@ const AppUI = ({
   deleteTodo,
 }) => {
   return (
-    <>
+    <section className="container-general">
       <TodoCounter
         total={totalTodos}
         completed={completedTodos}
@@ -38,7 +39,7 @@ const AppUI = ({
         ))}
       </TodoList>
       <CreateTodoButton />
-    </>
+    </section>
   )
 }
 

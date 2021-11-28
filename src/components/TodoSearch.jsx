@@ -8,6 +8,7 @@ const TodoSearch = ({searchText, setSearchText}) => {
 
   return (
     <input 
+      type="search"
       className="TodoSearch" 
       placeholder="Searching..." 
       onChange={onSearchValueChange}

@@ -1,0 +1,11 @@
+.container-general {
+  width: 80%;
+  margin: auto;
+  /* border: 1px solid red; */
+}
+
+@media screen and (min-width: 768px) {
+  .container-general {
+    width: 50%;
+  }
+}

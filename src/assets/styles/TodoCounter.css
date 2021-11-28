@@ -1,4 +1,37 @@
+.container-principal-message {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 27px;
+}
+
 .TodoCounter {
   font-size: 24px;
   text-align: center;
+}  
+
+.logo {
+  font-size: 30px;
+  font-weight: 600;
+  color: #000;
+
+  display: inline-block;
+  /* margin: auto; */
+  background: #fff;
+  mix-blend-mode: multiply;
+  position: relative;
+}
+
+.logo:before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(77deg, rgba(6,82,221,1) 0%, rgba(131,52,113,1) 85%);
+  mix-blend-mode: screen; 
+  position: absolute;
+  top: 0;
+  left: 0;
 }
