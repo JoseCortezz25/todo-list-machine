@@ -5,49 +5,45 @@ import TodoList from './components/TodoList'
 import TodoItem from './components/TodoItem'
 import CreateTodoButton from './components/CreateTodoButton'
 import './assets/styles/AppUI.css'
+import { TodoContext } from './context/TodoContext'
 
-const AppUI = ({
-  loading,
-  error,
-  
-  totalTodos,
-  completedTodos,
-  searchText,
-  setSearchText,
-  searchedTodos,
-  completeTodo,
-  deleteTodo,
-}) => {
+const AppUI = () => {
   return (
     <section className="container-general">
-      <TodoCounter
-        total={totalTodos}
-        completed={completedTodos}
-      />
+      <TodoCounter />
+      <TodoSearch />
 
-      <TodoSearch
-        searchText={searchText}
-        setSearchText={setSearchText}
-      />
+      <TodoContext.Consumer>
+        {({ 
+          error, 
+          loading, 
+          searchedTodos, 
+          completeTodo, 
+          deleteTodo
+        }) => (
+          <TodoList>
+            {error && <p>Error: {error.message}</p>}
+            {loading && <p>Loading...</p>}
+            {(!loading && !searchedTodos.length)
+              && <p>Create you first todo now!</p>}
+            {searchedTodos.map(todo => (
+              <TodoItem
+                key={todo.text}
+                text={todo.text}
+                completed={todo.completed}
+                onComplete={() => completeTodo(todo.text)}
+                onDelete={() => deleteTodo(todo.text)}
+              />
+            ))}
+          </TodoList>
+        )}
+      </TodoContext.Consumer>
 
-      <TodoList>
-        {error && <p>Error: {error.message}</p>}
-        {loading && <p>Loading...</p>}
-        {(!loading && !searchedTodos.length) 
-          && <p>Create you first todo now!</p>}
-        {searchedTodos.map(todo => (
-          <TodoItem
-            key={todo.text}
-            text={todo.text}
-            completed={todo.completed}
-            onComplete={() => completeTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
-          />
-        ))}
-      </TodoList>
       <CreateTodoButton />
     </section>
   )
 }
 
 export default AppUI
+
+
