@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import AppUI from './AppUI'
 import './App.css'
+import { useLocalStorage } from './hooks/useLocalStorage'
 
 const defaultTodos = [
   { text: 'Learn React', completed: true },
@@ -14,28 +15,18 @@ const defaultTodos = [
 ]
 
 function App() {
-  const localStorageTodos = localStorage.getItem('TODOS_V1')
-  let parsedTodos;
-
-  if (!localStorageTodos) {
-    localStorage.setItem('TODOS_V1', JSON.stringify([]))
-    parsedTodos = []
-  } else {
-    parsedTodos = JSON.parse(localStorageTodos)
-  }
-
-  const [todos, setTodos] = useState(parsedTodos)
+  const {
+    item: todos,
+    saveItem: saveTodos,
+    loading, 
+    error
+  } = useLocalStorage('TODOS_V1', [])
   const [searchText, setSearchText] = useState('')
 
   const completedTodos = todos.filter(todo => todo.completed).length
   const totalTodos = todos.length
 
   const searchedTodos = todos.filter(todo => todo.text.toLowerCase().includes(searchText.toLowerCase()))
-
-  const saveTodos = (newTodos) => {
-    localStorage.setItem('TODOS_V1', JSON.stringify(newTodos))
-    setTodos(newTodos)
-  }
 
   const completeTodo = (text) => {
     const todoIndex = todos.findIndex(todo => todo.text === text)
@@ -54,6 +45,8 @@ function App() {
   return (
     <>
       <AppUI
+        loading={loading}
+        error={error}
         totalTodos={totalTodos}
         completedTodos={completedTodos}
         searchText={searchText}
