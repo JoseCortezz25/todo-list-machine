@@ -6,6 +6,7 @@ import TodoItem from './components/TodoItem'
 import CreateTodoButton from './components/CreateTodoButton'
 import './assets/styles/AppUI.css'
 import { TodoContext } from './context/TodoContext'
+import { Modal } from './components/Modal'
 
 const AppUI = () => {
 
@@ -14,7 +15,9 @@ const AppUI = () => {
     loading,
     searchedTodos,
     completeTodo,
-    deleteTodo
+    deleteTodo,
+    openModal,
+    setOpenModal
   } = useContext(TodoContext)
 
   return (
@@ -38,7 +41,16 @@ const AppUI = () => {
         ))}
       </TodoList>
 
-      <CreateTodoButton />
+      {openModal &&
+        <Modal>
+          <p>{searchedTodos[0]?.text}</p>
+        </Modal>
+      }
+
+      <CreateTodoButton 
+        setOpenModal={setOpenModal} 
+        openModal={openModal} 
+      />
     </section>
   )
 }
