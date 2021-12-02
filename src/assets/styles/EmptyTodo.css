@@ -1,0 +1,23 @@
+.empty-todos {
+  width: 100%;
+  margin-top: 30px;
+}
+
+.empty-todos img {
+  display: block;
+  width: 80%;
+  height: auto;
+  margin: auto;
+}
+
+.empty-todos h3 {
+  font-family: 'Italiana';
+  text-align: center;
+  font-size: 25px;
+}
+
+.empty-todos button {
+  font-size: 16px;
+  margin: auto;
+  display: block;
+}

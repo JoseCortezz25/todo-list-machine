@@ -10,21 +10,21 @@
 .TodoCounter {
   font-size: 24px;
   text-align: center;
+  margin-top: -3px;
 }  
 
 .logo {
-  font-size: 30px;
+  font-family: 'Italiana';
+  font-size: 40px;
   font-weight: 600;
-  color: #000;
-
-  display: inline-block;
-  /* margin: auto; */
-  background: #fff;
+  color:#feca57;
+  margin-top: 30px;
+  /* display: inline-block;
   mix-blend-mode: multiply;
-  position: relative;
+  position: relative; */
 }
 
-.logo:before {
+/* .logo:before {
   content: '';
   display: block;
   width: 100%;
@@ -34,4 +34,4 @@
   position: absolute;
   top: 0;
   left: 0;
-}
+} */

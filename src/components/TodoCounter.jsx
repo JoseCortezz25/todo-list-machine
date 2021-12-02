@@ -9,7 +9,7 @@ const TodoCounter = () => {
       <span className="logo">TODO Machine</span>
       <h2 className="TodoCounter">{`Have completed ${completedTodos} to ${totalTodos} TODOs`}</h2>
     </section>
-  ) 
+  )
 }
 
 export default TodoCounter

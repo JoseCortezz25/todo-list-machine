@@ -1,0 +1,11 @@
+.loading-todos {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-todos p {
+  margin-bottom: 25px;
+}

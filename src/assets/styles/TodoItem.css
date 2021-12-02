@@ -1,12 +1,12 @@
 .TodoItem {
-  background-color: #fafafa;
+  background-color: #212121;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 24px;
   border-radius: 20px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  box-shadow: rgba(0, 0, 0, 0.281) 0px 2px 7px;
 }
 
 .TodoItem-p {
@@ -61,11 +61,12 @@
 
 .Icon-delete {
   position: absolute;
-  top: -24px;
+  /* top: -24px; */
   right: 0;
 }
 
 .Icon-delete svg {
+  fill: #fff;
   width: 24px;
   height: 24px;
 }

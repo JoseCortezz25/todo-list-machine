@@ -1,12 +1,12 @@
 import React from 'react'
 import '../assets/styles/CreateTodoButton.css'
 
-const CreateTodoButton = ({ setOpenModal, openModal }) => {
+const CreateTodoButton = ({ setOpenModal }) => {
 
   return (
     <button 
       className="CreateTodoButton"
-      onClick={() => setOpenModal(!openModal)}
+      onClick={() => setOpenModal(prevState => !prevState)}
       >
         +
       </button>
