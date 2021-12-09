@@ -22,7 +22,7 @@ label {
 
 textarea {
   background-color: #212121;
-  width: calc(100%-25px);
+  width: calc(100% - 25px);
   /* width: 90%; */
   min-height: 100px;
   max-height: 210px;

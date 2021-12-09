@@ -1,15 +1,20 @@
-import { createContext, useState } from 'react'
-import { useLocalStorage } from '../hooks/useLocalStorage'
+import { useState } from 'react'
+import { useLocalStorage } from './useLocalStorage'
 
-const TodoContext = createContext()
-
-const TodoProvider = (props) => {
+const useTodos = () => {
+  const arrayTodos = [
+    { text: 'Learn React', completed: true },
+    { text: 'Learn Redux', completed: false },
+    { text: 'Learn React Router', completed: false },
+    { text: 'Learn React Hooks', completed: true },
+  ]
   const {
     item: todos,
     saveItem: saveTodos,
-    loading, 
+    loading,
     error
-  } = useLocalStorage('TODOS_V1', [])
+  } = useLocalStorage('TODOS_V1', arrayTodos)
+
   const [searchText, setSearchText] = useState('')
   const [openModal, setOpenModal] = useState(false)
 
@@ -20,7 +25,7 @@ const TodoProvider = (props) => {
   const totalTodos = todos.length
 
   const searchedTodos = todos.filter(todo => todo.text.toLowerCase().includes(searchText.toLowerCase()))
-
+  // debugger
   const addTodo = (text) => {
     const newTodos = [...todos]
     newTodos.push({
@@ -44,29 +49,22 @@ const TodoProvider = (props) => {
     saveTodos(newTodos)
   }
 
-  return (
-    <TodoContext.Provider value={{
-      loading,
-      error,
-      totalTodos,
-      completedTodos,
-      searchText,
-      setSearchText,
-      searchedTodos,
-      addTodo,
-      completeTodo,
-      deleteTodo,
-      openModal,
-      setOpenModal,
-      completedTodosItems,
-      pendingTodosItems
-    }}> 
-      {props.children}
-    </TodoContext.Provider>
-  )
+  return {
+    loading,
+    error,
+    totalTodos,
+    completedTodos,
+    searchText,
+    setSearchText,
+    searchedTodos,
+    addTodo,
+    completeTodo,
+    deleteTodo,
+    openModal,
+    setOpenModal,
+    completedTodosItems,
+    pendingTodosItems
+  }
 }
 
-export { 
-  TodoContext, 
-  TodoProvider,
-}
+export { useTodos }
