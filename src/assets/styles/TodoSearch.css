@@ -62,3 +62,7 @@
   border-radius: 50%;
   font-size: 13px;
 }
+
+.TodoSearch:disabled {
+  opacity: 25%;
+}

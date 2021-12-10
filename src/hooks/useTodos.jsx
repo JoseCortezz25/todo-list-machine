@@ -2,18 +2,13 @@ import { useState } from 'react'
 import { useLocalStorage } from './useLocalStorage'
 
 const useTodos = () => {
-  const arrayTodos = [
-    { text: 'Learn React', completed: true },
-    { text: 'Learn Redux', completed: false },
-    { text: 'Learn React Router', completed: false },
-    { text: 'Learn React Hooks', completed: true },
-  ]
+
   const {
     item: todos,
     saveItem: saveTodos,
     loading,
     error
-  } = useLocalStorage('TODOS_V1', arrayTodos)
+  } = useLocalStorage('TODOS_V1', [])
 
   const [searchText, setSearchText] = useState('')
   const [openModal, setOpenModal] = useState(false)
@@ -25,7 +20,7 @@ const useTodos = () => {
   const totalTodos = todos.length
 
   const searchedTodos = todos.filter(todo => todo.text.toLowerCase().includes(searchText.toLowerCase()))
-  // debugger
+
   const addTodo = (text) => {
     const newTodos = [...todos]
     newTodos.push({

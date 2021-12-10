@@ -37,7 +37,7 @@ function App() {
 
   return (
     <section className="container-general">
-      <TodoHeader>
+      <TodoHeader loading={loading}>
         <TodoCounter
           totalTodos={totalTodos}
           completedTodos={completedTodos}
@@ -56,7 +56,6 @@ function App() {
         loading={loading}
         searchedTodos={searchedTodos}
         totalTodos={totalTodos}
-        // searchText={searchText}
 
         onError={() => <ErrorTodos error={error.message} />}
         onLoading={() => <LoadingTodos loading={loading} />}
@@ -64,32 +63,32 @@ function App() {
         onEmptyTodosResults={() => <EmptyTodosResults textSeached={searchText} />}
       >
         <>
-        {activateSection === 'all' && searchedTodos.map(todo => (
-          <TodoItem
-            key={todo.text}
-            text={todo.text}
-            completed={todo.completed}
-            onComplete={() => completeTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
-          />
+          {activateSection === 'all' && searchedTodos.map(todo => (
+            <TodoItem
+              key={todo.text}
+              text={todo.text}
+              completed={todo.completed}
+              onComplete={() => completeTodo(todo.text)}
+              onDelete={() => deleteTodo(todo.text)}
+            />
           ))}
           {activateSection === 'completed' && completedTodosItems.map(todo => (
-          <TodoItem
-            key={todo.text}
-            text={todo.text}
-            completed={todo.completed}
-            onComplete={() => completeTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
-          />
+            <TodoItem
+              key={todo.text}
+              text={todo.text}
+              completed={todo.completed}
+              onComplete={() => completeTodo(todo.text)}
+              onDelete={() => deleteTodo(todo.text)}
+            />
           ))}
           {activateSection === 'pending' && pendingTodosItems.map(todo => (
-          <TodoItem
-            key={todo.text}
-            text={todo.text}
-            completed={todo.completed}
-            onComplete={() => completeTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
-          />
+            <TodoItem
+              key={todo.text}
+              text={todo.text}
+              completed={todo.completed}
+              onComplete={() => completeTodo(todo.text)}
+              onDelete={() => deleteTodo(todo.text)}
+            />
           ))}
         </>
       </TodoList>

@@ -1,7 +1,7 @@
 import React from 'react'
 import '../assets/styles/TodoSearch.css'
 
-const TodoSearch = ({ setSearchText, pendingTodosItems, setActivateSection, activateSection }) => {
+const TodoSearch = ({ setSearchText, pendingTodosItems, setActivateSection, activateSection, loading }) => {
   const onSearchValueChange = (event) => {
     setSearchText(event.target.value)
   }
@@ -13,6 +13,7 @@ const TodoSearch = ({ setSearchText, pendingTodosItems, setActivateSection, acti
         className="TodoSearch"
         placeholder="Searching..."
         onChange={onSearchValueChange}
+        disabled={loading}
       />
       <section className="container-tags">
         <button onClick={() => setActivateSection('all')} className={activateSection === 'all' ? 'link-active' : ''}>All</button>
