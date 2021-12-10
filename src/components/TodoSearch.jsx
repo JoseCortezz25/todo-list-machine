@@ -1,7 +1,7 @@
 import React from 'react'
 import '../assets/styles/TodoSearch.css'
 
-const TodoSearch = ({ setSearchText, pendingTodosItems,setActivateSection }) => {
+const TodoSearch = ({ setSearchText, pendingTodosItems, setActivateSection, activateSection }) => {
   const onSearchValueChange = (event) => {
     setSearchText(event.target.value)
   }
@@ -15,9 +15,9 @@ const TodoSearch = ({ setSearchText, pendingTodosItems,setActivateSection }) => 
         onChange={onSearchValueChange}
       />
       <section className="container-tags">
-        <button onClick={() => setActivateSection('all')}>All</button>
-        <button onClick={() => setActivateSection('completed')}>Completed</button>
-        <button onClick={() => setActivateSection('pending')}>Pending <span className="icon-pending">{pendingTodosItems.length}</span></button>
+        <button onClick={() => setActivateSection('all')} className={activateSection === 'all' ? 'link-active' : ''}>All</button>
+        <button onClick={() => setActivateSection('completed')} className={activateSection === 'completed' ? 'link-active' : ''}>Completed</button>
+        <button onClick={() => setActivateSection('pending')} className={activateSection === 'pending' ? 'link-active' : ''}>Pending <span className="icon-pending">{pendingTodosItems.length}</span></button>
       </section>
     </>
   )

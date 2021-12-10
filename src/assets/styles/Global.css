@@ -16,3 +16,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.link-active {
+  color: #feca57 !important;
+  font-weight: bold;
+  border-bottom: 2px solid #feca57 !important;
+}

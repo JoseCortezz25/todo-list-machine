@@ -45,45 +45,51 @@ function App() {
           setActivateSection={setActivateSection}
           setSearchText={setSearchText}
           pendingTodosItems={pendingTodosItems}
+          activateSection={activateSection}
         />
       </TodoHeader>
 
-      <TodoList>
-        {console.log(searchedTodos)}
-        {error && <ErrorTodos error={error.message} />}
-        {loading && <LoadingTodos loading={loading} />}
-        {(!loading && !searchedTodos.length) && <EmptyTodos />}
+      <TodoList
+        error={error}
+        loading={loading}
+        searchedTodos={searchedTodos}
+        activateSection={activateSection}
+        completedTodosItems={completedTodosItems}
+        pendingTodosItems={pendingTodosItems}
 
-        {activateSection === 'all' && searchedTodos.map(todo => (
-          <TodoItem
-            key={todo.text}
-            text={todo.text}
-            completed={todo.completed}
-            onComplete={() => completeTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
-          />
-        ))}
-
-        {activateSection === 'completed' && completedTodosItems.map(todo => (
-          <TodoItem
-            key={todo.text}
-            text={todo.text}
-            completed={todo.completed}
-            onComplete={() => completeTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
-          />
-        ))}
-
-        {activateSection === 'pending' && pendingTodosItems.map(todo => (
-          <TodoItem
-            key={todo.text}
-            text={todo.text}
-            completed={todo.completed}
-            onComplete={() => completeTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
-          />
-        ))}
-      </TodoList>
+        onError={() => <ErrorTodos error={error.message} />}
+        onLoading={() => <LoadingTodos loading={loading} />}
+        onEmptyTodos={() => <EmptyTodos />}
+        render={() => [
+          activateSection === 'all' && searchedTodos.map(todo => (
+            <TodoItem
+              key={todo.text}
+              text={todo.text}
+              completed={todo.completed}
+              onComplete={() => completeTodo(todo.text)}
+              onDelete={() => deleteTodo(todo.text)}
+            />
+          )),
+          activateSection === 'completed' && completedTodosItems.map(todo => (
+            <TodoItem
+              key={todo.text}
+              text={todo.text}
+              completed={todo.completed}
+              onComplete={() => completeTodo(todo.text)}
+              onDelete={() => deleteTodo(todo.text)}
+            />
+          )),
+          activateSection === 'pending' && pendingTodosItems.map(todo => (
+            <TodoItem
+              key={todo.text}
+              text={todo.text}
+              completed={todo.completed}
+              onComplete={() => completeTodo(todo.text)}
+              onDelete={() => deleteTodo(todo.text)}
+            />
+          ))
+        ]}
+      />
 
       {openModal &&
         <Modal>
