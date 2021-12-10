@@ -13,6 +13,7 @@ import { Modal } from './components/Modal'
 import { EmptyTodos } from './components/EmptyTodos'
 import { ErrorTodos } from './components/ErrorTodos'
 import { LoadingTodos } from './components/LoadingTodos'
+import { EmptyTodosResults } from './components/EmptyTodosResults'
 
 function App() {
   const [activateSection, setActivateSection] = useState('all')
@@ -30,7 +31,8 @@ function App() {
     openModal,
     setOpenModal,
     completedTodosItems,
-    pendingTodosItems
+    pendingTodosItems,
+    searchText
   } = useTodos()
 
   return (
@@ -53,50 +55,51 @@ function App() {
         error={error}
         loading={loading}
         searchedTodos={searchedTodos}
-        activateSection={activateSection}
-        completedTodosItems={completedTodosItems}
-        pendingTodosItems={pendingTodosItems}
+        totalTodos={totalTodos}
+        // searchText={searchText}
 
         onError={() => <ErrorTodos error={error.message} />}
         onLoading={() => <LoadingTodos loading={loading} />}
         onEmptyTodos={() => <EmptyTodos />}
-        render={() => [
-          activateSection === 'all' && searchedTodos.map(todo => (
-            <TodoItem
-              key={todo.text}
-              text={todo.text}
-              completed={todo.completed}
-              onComplete={() => completeTodo(todo.text)}
-              onDelete={() => deleteTodo(todo.text)}
-            />
-          )),
-          activateSection === 'completed' && completedTodosItems.map(todo => (
-            <TodoItem
-              key={todo.text}
-              text={todo.text}
-              completed={todo.completed}
-              onComplete={() => completeTodo(todo.text)}
-              onDelete={() => deleteTodo(todo.text)}
-            />
-          )),
-          activateSection === 'pending' && pendingTodosItems.map(todo => (
-            <TodoItem
-              key={todo.text}
-              text={todo.text}
-              completed={todo.completed}
-              onComplete={() => completeTodo(todo.text)}
-              onDelete={() => deleteTodo(todo.text)}
-            />
-          ))
-        ]}
-      />
+        onEmptyTodosResults={() => <EmptyTodosResults textSeached={searchText} />}
+      >
+        <>
+        {activateSection === 'all' && searchedTodos.map(todo => (
+          <TodoItem
+            key={todo.text}
+            text={todo.text}
+            completed={todo.completed}
+            onComplete={() => completeTodo(todo.text)}
+            onDelete={() => deleteTodo(todo.text)}
+          />
+          ))}
+          {activateSection === 'completed' && completedTodosItems.map(todo => (
+          <TodoItem
+            key={todo.text}
+            text={todo.text}
+            completed={todo.completed}
+            onComplete={() => completeTodo(todo.text)}
+            onDelete={() => deleteTodo(todo.text)}
+          />
+          ))}
+          {activateSection === 'pending' && pendingTodosItems.map(todo => (
+          <TodoItem
+            key={todo.text}
+            text={todo.text}
+            completed={todo.completed}
+            onComplete={() => completeTodo(todo.text)}
+            onDelete={() => deleteTodo(todo.text)}
+          />
+          ))}
+        </>
+      </TodoList>
 
       {openModal &&
         <Modal>
-          <TodoForm 
-            setOpenModal={setOpenModal} 
+          <TodoForm
+            setOpenModal={setOpenModal}
             addTodo={addTodo}
-            />
+          />
         </Modal>
       }
 

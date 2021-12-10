@@ -19,8 +19,8 @@ const useTodos = () => {
   const [openModal, setOpenModal] = useState(false)
 
   const completedTodos = todos.filter(todo => todo.completed).length
-  const completedTodosItems = todos.filter(todo => todo.completed)
-  const pendingTodosItems = todos.filter(todo => !todo.completed)
+  const completedTodosItems = todos.filter(todo => todo.completed && todo.text.toLowerCase().includes(searchText.toLowerCase()))
+  const pendingTodosItems = todos.filter(todo => !todo.completed && todo.text.toLowerCase().includes(searchText.toLowerCase()))
 
   const totalTodos = todos.length
 
@@ -63,7 +63,7 @@ const useTodos = () => {
     openModal,
     setOpenModal,
     completedTodosItems,
-    pendingTodosItems
+    pendingTodosItems,
   }
 }
 
