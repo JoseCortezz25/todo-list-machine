@@ -14,7 +14,7 @@ import { EmptyTodos } from './components/EmptyTodos'
 import { ErrorTodos } from './components/ErrorTodos'
 import { LoadingTodos } from './components/LoadingTodos'
 import { EmptyTodosResults } from './components/EmptyTodosResults'
-import { ChangeAlertWithStorageListener } from './components/ChangeAlert'
+import { ChangeAlert } from './components/ChangeAlert'
 
 function App() {
   const [activateSection, setActivateSection] = useState('all')
@@ -65,7 +65,7 @@ function App() {
         onEmptyTodosResults={() => <EmptyTodosResults textSeached={searchText} />}
       >
         <>
-          {activateSection === 'all' && searchedTodos.map(todo => (
+          {!loading && activateSection === 'all' && searchedTodos.map(todo => (
             <TodoItem
               key={todo.text}
               text={todo.text}
@@ -74,7 +74,7 @@ function App() {
               onDelete={() => deleteTodo(todo.text)}
             />
           ))}
-          {activateSection === 'completed' && completedTodosItems.map(todo => (
+          {!loading && activateSection === 'completed' && completedTodosItems.map(todo => (
             <TodoItem
               key={todo.text}
               text={todo.text}
@@ -83,7 +83,7 @@ function App() {
               onDelete={() => deleteTodo(todo.text)}
             />
           ))}
-          {activateSection === 'pending' && pendingTodosItems.map(todo => (
+          {!loading && activateSection === 'pending' && pendingTodosItems.map(todo => (
             <TodoItem
               key={todo.text}
               text={todo.text}
@@ -105,7 +105,7 @@ function App() {
       }
 
       <CreateTodoButton setOpenModal={setOpenModal} />
-      <ChangeAlertWithStorageListener sincronize={sincronizeTodos} />
+      <ChangeAlert sincronize={sincronizeTodos} />
     </section>
   )
 }
