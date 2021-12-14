@@ -7,7 +7,8 @@ const useTodos = () => {
     item: todos,
     saveItem: saveTodos,
     loading,
-    error
+    error,
+    sincronize: sincronizeTodos
   } = useLocalStorage('TODOS_V1', [])
 
   const [searchText, setSearchText] = useState('')
@@ -59,6 +60,7 @@ const useTodos = () => {
     setOpenModal,
     completedTodosItems,
     pendingTodosItems,
+    sincronizeTodos
   }
 }
 

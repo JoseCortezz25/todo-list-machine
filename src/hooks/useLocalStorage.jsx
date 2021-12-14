@@ -3,8 +3,9 @@ import { useState, useEffect } from 'react'
 const useLocalStorage = (itemName, initialValue) => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
-
   const [item, setItem] = useState(initialValue)
+  const [sincronizeItem, setSincronizeItem] = useState(true)
+
   useEffect(() => {
     setTimeout(() => {
       try {
@@ -19,11 +20,12 @@ const useLocalStorage = (itemName, initialValue) => {
         }
         setItem(parsedItem)
         setLoading(false)
+        setSincronizeItem(true)
       } catch (error) {
         setError(error)
       }
-    }, 1000)
-  }, [])
+    }, 3000)
+  }, [sincronizeItem])
 
   const saveItem = (newTodos) => {
     try {
@@ -34,11 +36,17 @@ const useLocalStorage = (itemName, initialValue) => {
     }
   }
 
+  const sincronize = () => {
+    setLoading(true)
+    setSincronizeItem(false)
+  }
+
   return {
     item,
     saveItem,
     loading,
-    error
+    error,
+    sincronize
   }
 }
 

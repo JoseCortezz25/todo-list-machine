@@ -14,6 +14,7 @@ import { EmptyTodos } from './components/EmptyTodos'
 import { ErrorTodos } from './components/ErrorTodos'
 import { LoadingTodos } from './components/LoadingTodos'
 import { EmptyTodosResults } from './components/EmptyTodosResults'
+import { ChangeAlertWithStorageListener } from './components/ChangeAlert'
 
 function App() {
   const [activateSection, setActivateSection] = useState('all')
@@ -32,7 +33,8 @@ function App() {
     setOpenModal,
     completedTodosItems,
     pendingTodosItems,
-    searchText
+    searchText,
+    sincronizeTodos
   } = useTodos()
 
   return (
@@ -103,6 +105,7 @@ function App() {
       }
 
       <CreateTodoButton setOpenModal={setOpenModal} />
+      <ChangeAlertWithStorageListener sincronize={sincronizeTodos} />
     </section>
   )
 }
