@@ -8,7 +8,7 @@ const useTodos = () => {
     saveItem: saveTodos,
     loading,
     error,
-    sincronize: sincronizeTodos
+    sincronizeItem: sincronizeTodos
   } = useLocalStorage('TODOS_V1', [])
 
   const [searchText, setSearchText] = useState('')
