@@ -18,24 +18,28 @@ import { ChangeAlert } from './components/ChangeAlert'
 
 function App() {
   const [activateSection, setActivateSection] = useState('all')
+  const { state, statesUpdaters } = useTodos()
 
-  const {
+  const { 
     loading,
     error,
     totalTodos,
     completedTodos,
-    setSearchText,
+    searchText,
     searchedTodos,
+    openModal,
+    completedTodosItems,
+    pendingTodosItems,
+  } = state
+
+  const { 
+    setSearchText,
     addTodo,
     completeTodo,
     deleteTodo,
-    openModal,
     setOpenModal,
-    completedTodosItems,
-    pendingTodosItems,
-    searchText,
     sincronizeTodos
-  } = useTodos()
+  }  = statesUpdaters
 
   return (
     <section className="container-general">

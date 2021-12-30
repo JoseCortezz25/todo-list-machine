@@ -45,22 +45,31 @@ const useTodos = () => {
     saveTodos(newTodos)
   }
 
-  return {
+
+  const states = {
     loading,
     error,
     totalTodos,
     completedTodos,
     searchText,
-    setSearchText,
     searchedTodos,
+    openModal,
+    completedTodosItems,
+    pendingTodosItems,
+  }
+  
+  const statesUpdaters = {
+    setSearchText,
     addTodo,
     completeTodo,
     deleteTodo,
-    openModal,
     setOpenModal,
-    completedTodosItems,
-    pendingTodosItems,
     sincronizeTodos
+  }
+
+  return {
+    states,
+    statesUpdaters
   }
 }
 
